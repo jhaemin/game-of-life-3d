@@ -1,43 +1,50 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { useRef, useState } from 'react'
+import THREE from 'three'
+import { useSnapshot } from 'valtio'
+import { useWindowSize } from './hooks/use-window-size'
+import { state } from './state'
 
-function App() {
-  const [count, setCount] = useState(0)
+// Asynchronously import WebAssembly
+import('./wasm').catch((e) => console.error(e))
+
+function Box(props: JSX.IntrinsicElements['mesh']) {
+  const mesh = useRef<THREE.Mesh>(null!)
+  const [hovered, setHovered] = useState(false)
+  const [active, setActive] = useState(false)
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <mesh
+      {...props}
+      ref={mesh}
+      scale={active ? 1.5 : 1}
+      onClick={() => setActive(!active)}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={hovered ? 'blue' : 'crimson'} />
+    </mesh>
+  )
+}
+
+function App() {
+  const { width, height } = useWindowSize()
+  const { positions } = useSnapshot(state)
+
+  return (
+    <div className="app">
+      <Canvas style={{ width, height }}>
+        <PerspectiveCamera position={[0, 0, 0]}>
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          {positions.map((position, i) => (
+            <Box key={i} position={position} />
+          ))}
+          <OrbitControls enableDamping zoomSpeed={0.8} rotateSpeed={0.5} minDistance={0} maxDistance={100} />
+        </PerspectiveCamera>
+      </Canvas>
     </div>
   )
 }
