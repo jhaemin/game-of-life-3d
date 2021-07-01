@@ -1,5 +1,6 @@
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
+import 'muyaho'
 import { useRef } from 'react'
 import THREE from 'three'
 import { useSnapshot } from 'valtio'
