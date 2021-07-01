@@ -1,6 +1,6 @@
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import THREE from 'three'
 import { useSnapshot } from 'valtio'
 import { useWindowSize } from './hooks/use-window-size'
@@ -11,20 +11,11 @@ import('./wasm').catch((e) => console.error(e))
 
 function Box(props: JSX.IntrinsicElements['mesh']) {
   const mesh = useRef<THREE.Mesh>(null!)
-  const [hovered, setHovered] = useState(false)
-  const [active, setActive] = useState(false)
 
   return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? 1.5 : 1}
-      onClick={() => setActive(!active)}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-    >
+    <mesh {...props} ref={mesh}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'blue' : 'crimson'} />
+      <meshStandardMaterial color="crimson" />
     </mesh>
   )
 }
@@ -42,7 +33,13 @@ function App() {
           {positions.map((position, i) => (
             <Box key={i} position={position} />
           ))}
-          <OrbitControls enableDamping zoomSpeed={0.8} rotateSpeed={0.5} minDistance={0} maxDistance={100} />
+          <OrbitControls
+            enableDamping
+            zoomSpeed={0.8}
+            rotateSpeed={0.5}
+            minDistance={0}
+            maxDistance={100}
+          />
         </PerspectiveCamera>
       </Canvas>
     </div>
