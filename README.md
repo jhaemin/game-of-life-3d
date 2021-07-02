@@ -41,3 +41,6 @@ Then serve the `build/` directory with your favorite tools. For example,
 
 [Checkout serve](<(https://github.com/vercel/serve)>)
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/19797697/124280313-81370f00-db83-11eb-95db-35372d8cadef.png" />
+</p>
