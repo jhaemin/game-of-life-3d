@@ -33,15 +33,15 @@ camera.position.set(0, 0, 10)
 // Create camera controls after setting the camera position
 const cameraControls = new CameraControls(camera, canvas)
 
-cameraControls.minDistance = 10
+cameraControls.minDistance = 5
 cameraControls.dollySpeed = 0.5
 cameraControls.maxDistance = 80
-cameraControls.dolly(-50)
+cameraControls.dolly(-40)
 
-const light1 = new THREE.DirectionalLight(0xffffff, 2)
-light1.position.set(90, 80, 150)
-const light2 = new THREE.DirectionalLight(0xffffff, 2)
-light2.position.set(-30, -50, -100)
+const light1 = new THREE.DirectionalLight(0xffffff, 1.8)
+light1.position.set(100, 120, 110)
+const light2 = new THREE.DirectionalLight(0xffffff, 1.3)
+light2.position.set(-60, -50, -70)
 scene.add(light1, light2)
 
 renderer.render(scene, camera)
