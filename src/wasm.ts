@@ -1,4 +1,3 @@
-import '@react-three/fiber'
 import CameraControls from 'camera-controls'
 import * as THREE from 'three'
 import { Cell, Universe } from '../wasm/pkg/wasm_game_of_life_bg'
