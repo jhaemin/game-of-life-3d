@@ -4,7 +4,7 @@
 
 <h1 align="center">Game of Life 3D</h1>
 
-### [Demo](https://jhaemin.github.io/game-of-life-3d)
+### [Demo](https://gol3d.jhaemin.com/)
 
 An implementation of the [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) using multiple technologies including TypeScript, React, Rust, WebAssembly and Three.js.
 
