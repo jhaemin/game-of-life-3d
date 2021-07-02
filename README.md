@@ -4,6 +4,8 @@
 
 <h1 align="center">Game of Life 3D</h1>
 
+### [Demo](https://jhaemin.github.io/game-of-life-3d)
+
 An implementation of the [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) using multiple technologies including TypeScript, React, Rust, WebAssembly and Three.js.
 
 It's not actually a 3D Game of Life, but Game of Life 3D which renders two-dimensional space into three-dimensional canvas where the cells are just cubes. The objectives of this project are i) to get an idea of combining unfamiliar (to me) technologies in a single software, ii) to expand knowledge and possibilities of the frontend development and iii) to help anyone who are interested in my interests to begin their own learning processes.
@@ -39,7 +41,7 @@ Then serve the `build/` directory with your favorite tools. For example,
 > serve build
 ```
 
-[Checkout serve](<(https://github.com/vercel/serve)>)
+[Checkout serve](https://github.com/vercel/serve)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/19797697/124280313-81370f00-db83-11eb-95db-35372d8cadef.png" />
