@@ -5,8 +5,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export",
-    "deploy": "gh-pages -d out"
+    "export": "next build && next export && touch out/.nojekyll && mkdir out/game-of-life-3d && mv out/_next out/game-of-life-3d",
+    "deploy": "npm run export && gh-pages -d out --dotfiles"
   },
   "browserslist": {
     "production": [
