@@ -25,6 +25,8 @@ const renderer = new THREE.WebGLRenderer({ canvas })
 renderer.setSize(canvasWidth, canvasHeight)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
+const clock = new THREE.Clock()
+
 const camera = new THREE.PerspectiveCamera(75, canvasWidth / canvasHeight)
 camera.position.set(0, 0, 10)
 
@@ -82,8 +84,8 @@ for (let row = 0; row < universeHeight; row++) {
 scene.add(...meshes)
 
 const tick = () => {
-  // const delta = clock.getDelta()
-  // const hasControlsUpdated = cameraControls.update(delta)
+  const delta = clock.getDelta()
+  const hasControlsUpdated = cameraControls.update(delta)
 
   universe.tick()
 
@@ -99,9 +101,11 @@ const tick = () => {
       const material = meshes[index].material as any
 
       if (cells[index] === Cell.Alive) {
+        // material.color.setHex(0xff0000)
         material.transparent = false
         material.opacity = 1
       } else {
+        // material.color.setHex(0x00ff0000)
         material.transparent = true
         material.opacity = 0
       }
