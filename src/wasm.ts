@@ -1,8 +1,8 @@
 import '@react-three/fiber'
 import CameraControls from 'camera-controls'
 import * as THREE from 'three'
-import { Cell, Universe } from 'wasm-game-of-life'
-import { memory } from 'wasm-game-of-life/wasm_game_of_life_bg.wasm'
+import { Cell, Universe } from '../wasm/pkg/wasm_game_of_life_bg'
+import { memory } from '../wasm/pkg/wasm_game_of_life_bg.wasm'
 import { state } from './state'
 
 CameraControls.install({ THREE })

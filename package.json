@@ -2,39 +2,12 @@
   "name": "game-of-life-3d",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@react-three/drei": "^7.0.6",
-    "@react-three/fiber": "^7.0.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^12.20.15",
-    "@types/react": "^17.0.13",
-    "@types/react-dom": "^17.0.8",
-    "camera-controls": "^1.28.4",
-    "lodash": "^4.17.21",
-    "muyaho": "^1.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "three": "^0.130.0",
-    "typescript": "^4.3.5",
-    "valtio": "^1.0.6",
-    "wasm-game-of-life": "file:wasm/pkg",
-    "web-vitals": "^1.1.2"
-  },
   "scripts": {
-    "dev": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "deploy": "gh-pages -d out"
   },
   "browserslist": {
     "production": [
@@ -48,10 +21,27 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@react-three/fiber": "^7.0.2",
+    "camera-controls": "^1.28.4",
+    "error": "10.4.0",
+    "lodash": "^4.17.21",
+    "next": "11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "three": "^0.130.0",
+    "typescript": "^4.3.5",
+    "valtio": "^1.0.6"
+  },
   "devDependencies": {
     "@types/lodash": "^4.14.170",
+    "@types/node": "^15.14.0",
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
     "@types/three": "^0.129.1",
-    "react-app-rewired": "^2.1.8",
+    "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1",
+    "gh-pages": "^3.2.3",
     "wasm-loader": "^1.3.0"
   }
 }
