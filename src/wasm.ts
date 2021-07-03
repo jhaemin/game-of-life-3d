@@ -20,7 +20,7 @@ const canvas = document.querySelector<HTMLCanvasElement>('canvas')!
 const scene = new THREE.Scene()
 scene.background = new THREE.Color(0xffffff)
 
-const renderer = new THREE.WebGLRenderer({ canvas })
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true })
 renderer.setSize(canvasWidth, canvasHeight)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -100,11 +100,9 @@ const tick = () => {
       const material = meshes[index].material as any
 
       if (cells[index] === Cell.Alive) {
-        // material.color.setHex(0xff0000)
         material.transparent = false
         material.opacity = 1
       } else {
-        // material.color.setHex(0x00ff0000)
         material.transparent = true
         material.opacity = 0
       }
