@@ -5,4 +5,5 @@ export const state = proxy({
     width: 0,
     height: 0,
   },
+  tickSpeed: 1,
 })

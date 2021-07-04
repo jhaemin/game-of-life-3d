@@ -62,24 +62,10 @@ window.addEventListener('resize', () => {
 const universe = Universe.new(universeWidth, universeHeight)
 const cellsPtr = universe.cells()
 
-const meshes: THREE.Mesh[] = Array(universeWidth * universeHeight).fill(
-  undefined
-)
 let geometries: THREE.BufferGeometry[] = []
 
 for (let row = 0; row < universeHeight; row++) {
   for (let col = 0; col < universeWidth; col++) {
-    // const index = getIndex(row, col)
-    // meshes[index] = new THREE.Mesh(
-    //   new THREE.BoxGeometry(1, 1, 1),
-    //   new THREE.MeshStandardMaterial({ color: 'crimson' })
-    // )
-    // meshes[index].position.set(
-    //   (col - universeWidth / 2) * 1.4,
-    //   (row - universeHeight / 2) * 1.4,
-    //   0
-    // )
-
     const geometry = new THREE.BoxGeometry(1, 1, 1)
     geometry.translate(
       (col - universeWidth / 2) * 1.4,
@@ -102,12 +88,9 @@ const mesh = new THREE.Mesh(
 
 scene.add(mesh)
 
-// scene.add(...meshes)
+let deltaSum = 0
 
-const tick = () => {
-  const delta = clock.getDelta()
-  const hasControlsUpdated = cameraControls.update(delta)
-
+export const tickUniverse = () => {
   universe.tick()
 
   const cells = new Uint8Array(
@@ -121,24 +104,6 @@ const tick = () => {
   for (let row = 0; row < universeHeight; row++) {
     for (let col = 0; col < universeWidth; col++) {
       const index = getIndex(row, col)
-      // const material = meshes[index].material as any
-
-      // if (cells[index] === Cell.Alive) {
-      //   material.transparent = false
-      //   material.opacity = 1
-      // } else {
-      //   material.transparent = true
-      //   material.opacity = 0
-      // }
-
-      // const geometry = geometries[index]
-      // geometry.dispose()
-
-      // if (cells[index] === Cell.Alive) {
-      //   geometry.scale(1, 1, 1)
-      // } else {
-      //   geometry.scale(0, 0, 0)
-      // }
 
       if (cells[index] === Cell.Alive) {
         const geometry = new THREE.BoxGeometry(1, 1, 1)
@@ -153,6 +118,18 @@ const tick = () => {
   }
 
   mesh.geometry = BufferGeometryUtils.mergeBufferGeometries(geometries, false)
+}
+
+const tick = () => {
+  const delta = clock.getDelta()
+  const hasControlsUpdated = cameraControls.update(delta)
+
+  deltaSum += delta
+
+  if (deltaSum > 0.02 / state.tickSpeed) {
+    deltaSum = 0
+    tickUniverse()
+  }
 
   renderer.render(scene, camera)
   requestAnimationFrame(tick)

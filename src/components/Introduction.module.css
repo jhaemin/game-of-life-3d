@@ -1,0 +1,24 @@
+.introduction {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: calc(100% - 30px);
+  max-width: 320px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 10px;
+  color: #808080;
+  line-height: 1.2;
+}
+
+.gotItBtn {
+  color: #077bff;
+}

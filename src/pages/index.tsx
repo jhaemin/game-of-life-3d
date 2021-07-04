@@ -1,3 +1,5 @@
+import Controls from '@/components/Controls'
+import Introduction from '@/components/Introduction'
 import { useEffect } from 'react'
 import { useSnapshot } from 'valtio'
 import { state } from '../state'
@@ -26,6 +28,8 @@ function App() {
   return (
     <div className="app">
       <canvas id="canvas" {...windowSize} />
+      <Introduction />
+      <Controls />
     </div>
   )
 }
