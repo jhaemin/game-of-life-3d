@@ -3,3 +3,12 @@
   right: 15px;
   bottom: 15px;
 }
+
+.stopAndNext {
+  display: flex;
+  align-items: center;
+}
+
+.next {
+  margin-left: 10px;
+}

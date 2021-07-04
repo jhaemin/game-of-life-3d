@@ -1,6 +1,8 @@
 import CameraControls from 'camera-controls'
 import * as THREE from 'three'
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils'
+import { subscribe } from 'valtio'
+import { subscribeKey } from 'valtio/utils'
 import { Cell, Universe } from '../wasm/pkg/wasm_game_of_life_bg'
 import { memory } from '../wasm/pkg/wasm_game_of_life_bg.wasm'
 import { state } from './state'
@@ -60,7 +62,6 @@ window.addEventListener('resize', () => {
 })
 
 const universe = Universe.new(universeWidth, universeHeight)
-const cellsPtr = universe.cells()
 
 let geometries: THREE.BufferGeometry[] = []
 
@@ -92,6 +93,7 @@ let deltaSum = 0
 
 export const tickUniverse = () => {
   universe.tick()
+  const cellsPtr = universe.cells()
 
   const cells = new Uint8Array(
     memory.buffer,
@@ -120,13 +122,17 @@ export const tickUniverse = () => {
   mesh.geometry = BufferGeometryUtils.mergeBufferGeometries(geometries, false)
 }
 
+subscribeKey(state, 'tickTriggered', () => {
+  tickUniverse()
+})
+
 const tick = () => {
   const delta = clock.getDelta()
   const hasControlsUpdated = cameraControls.update(delta)
 
   deltaSum += delta
 
-  if (deltaSum > 0.02 / state.tickSpeed) {
+  if (!state.isStopped && deltaSum > 0.02 / state.tickSpeed) {
     deltaSum = 0
     tickUniverse()
   }

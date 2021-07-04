@@ -6,4 +6,6 @@ export const state = proxy({
     height: 0,
   },
   tickSpeed: 1,
+  isStopped: false,
+  tickTriggered: false,
 })

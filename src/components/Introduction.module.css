@@ -14,11 +14,6 @@
 .paragraph {
   font-size: 16px;
   font-weight: 400;
-  margin-top: 10px;
   color: #808080;
   line-height: 1.2;
-}
-
-.gotItBtn {
-  color: #077bff;
 }
