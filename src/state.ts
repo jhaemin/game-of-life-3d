@@ -5,7 +5,7 @@ export const state = proxy({
     width: 0,
     height: 0,
   },
-  tickSpeed: 1,
+  tickSpeed: 0.5,
   isStopped: false,
   tickTriggered: false,
 })
