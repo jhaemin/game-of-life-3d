@@ -1,7 +1,6 @@
 import CameraControls from 'camera-controls'
 import * as THREE from 'three'
 import { BufferGeometryUtils } from 'three/examples/jsm/utils/BufferGeometryUtils'
-import { subscribe } from 'valtio'
 import { subscribeKey } from 'valtio/utils'
 import { Cell, Universe } from '../wasm/pkg/wasm_game_of_life_bg'
 import { memory } from '../wasm/pkg/wasm_game_of_life_bg.wasm'
